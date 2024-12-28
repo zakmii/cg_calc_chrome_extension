@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "CGPA Calculator",
+    "version": "1.0",
+    "description": "Fetch student course data and calculate CGPA.",
+    "permissions": [
+      "cookies",
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://iiitd.nurecampus.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js",
+      "type": "module"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  
