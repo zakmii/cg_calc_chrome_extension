@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 // Fetching levels data
                 const levelsResponse = await fetch(levelsApiUrl, {
                     method: 'GET',
-                    credentials: 'include', // Include cookies
+                    credentials: 'include',
                 });
 
                 if (!levelsResponse.ok) {
@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     // Fetching courses for each level
                     const coursesResponse = await fetch(`${coursesApiUrl}?level.id=${levelId}`, {
                         method: 'GET',
-                        credentials: 'include', // Include cookies
+                        credentials: 'include', 
                     });
 
                     if (!coursesResponse.ok) {
@@ -60,7 +60,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 const allLevelsData = await Promise.all(promises);
                 console.log('All levels data with courses:', allLevelsData);
 
-                // Calculate CGPA using the fetched data
                 const { cgpa, logs } = calculateCGPA(allLevelsData);
 
                 // Send CGPA and logs to the popup
