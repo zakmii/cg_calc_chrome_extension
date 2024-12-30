@@ -71,19 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        // Add title
         doc.setFontSize(16);
         doc.text('CGPA Logs', 10, 10);
 
-        // Add logs content
         doc.setFontSize(12);
-        let y = 20; // Vertical position
+        let y = 20;
         savedLogs.forEach(log => {
             doc.text(log, 10, y);
-            y += 10; // Move to the next line
+            y += 10;
         });
 
-        // Save the file
         doc.save('CGPA_Logs.pdf');
     }
 
