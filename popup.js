@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const fetchButton = document.getElementById('fetchBtn');
     const loadingDiv = document.getElementById('loading');
     const responseDiv = document.getElementById('response');
+    const downloadButton = document.getElementById('downloadBtn');
+    let savedLogs = [];
 
     function showLoading() {
         loadingDiv.style.display = 'flex';
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateResponse(success, content) {
+        savedLogs = success ? content.logs : [];
         responseDiv.innerHTML = success
             ? `
             <div class="result-container">
@@ -27,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleFetch() {
-        console.log('Button clicked!');
         showLoading();
 
         chrome.runtime.sendMessage({ action: 'fetchData' }, function (response) {
@@ -60,5 +62,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadStoredData();
 
+    function downloadPDF() {
+        if (!savedLogs) {
+            alert('No logs available to download.');
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Add title
+        doc.setFontSize(16);
+        doc.text('CGPA Logs', 10, 10);
+
+        // Add logs content
+        doc.setFontSize(12);
+        let y = 20; // Vertical position
+        savedLogs.forEach(log => {
+            doc.text(log, 10, y);
+            y += 10; // Move to the next line
+        });
+
+        // Save the file
+        doc.save('CGPA_Logs.pdf');
+    }
+
     fetchButton.addEventListener('click', handleFetch);
+    downloadButton.addEventListener('click', downloadPDF);
 });

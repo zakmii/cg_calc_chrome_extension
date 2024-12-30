@@ -108,3 +108,18 @@ h1 {
 .logs-content p:last-child {
   border-bottom: none;
 }
+
+#downloadBtn {
+  padding: 10px 15px;
+  margin-top: 15px;
+  background-color: #00b3ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#downloadBtn:hover {
+  background-color: #0056b3;
+}
