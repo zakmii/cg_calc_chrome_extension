@@ -4,6 +4,12 @@ chrome.runtime.onInstalled.addListener(() => {
     console.log('Extension installed and ready.');
 });
 
+function extractLastTerm(fieldValue) {
+    // Split the string by "/" and return the last element of the resulting array
+    const parts = fieldValue.split('/');
+    return parts[parts.length - 1];
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('Message received:', request);
     
@@ -31,7 +37,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 // Fetching courses data for each level
                 const promises = levelsData.map(async (level) => {
                     const levelId = level.level.id;
-
+                    const semesterName = extractLastTerm(level.level.code);
                     // Fetching courses for each level
                     const coursesResponse = await fetch(`${coursesApiUrl}?level.id=${levelId}`, {
                         method: 'GET',
@@ -46,6 +52,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     return {
                         levelId: levelId,
                         courses: courses,
+                        semesterName: semesterName,
                     };
                 });
 
