@@ -88,10 +88,10 @@ export function calculateCGPA(levelsData) {
     logs.push(`Total Credits: ${totalCredits}`);
     logs.push(`Total Degree Credits: ${totalDegreeCredits - selfGrowthCredits - communityWorkCredits} + ${selfGrowthCredits + communityWorkCredits} (SG+CW) `);
     logs.push('--------------------------------------');
-    logs.push(`Calculated CGPA: ${cgpa.toFixed(2)}`);
+    logs.push(`NOTE: Dropping of the lowest grade is not considered in this calculation.`);
 
     logs = logs.map(log => {
-        if (log.includes('Total')) {
+        if (log.includes('Total') || log.includes('NOTE')) {
             return `<b>${log}</b>`;
         }
         return log;
