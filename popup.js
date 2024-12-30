@@ -6,16 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchButton.addEventListener('click', function() {
         console.log('Button clicked!');
         
-        // Show the loading spinner
         loadingDiv.style.display = 'flex';
         responseDiv.innerHTML = '';
 
         chrome.runtime.sendMessage({ action: 'fetchData' }, function(response) {
-            // Hide the loading spinner
+            
             loadingDiv.style.display = 'none';
 
             if (response.success) {
-                // Create HTML content for logs
+                
                 const logsHtml = response.logs.map(log => `<p>${log}</p>`).join('');
                 
                 // Display the CGPA and logs in the popup
