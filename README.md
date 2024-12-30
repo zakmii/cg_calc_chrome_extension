@@ -39,6 +39,7 @@ $ cd cg_calc_chrome_extension
 
 1. **Login to the ERP Portal**:
    - Navigate to the ERP portal and log in with your credentials.
+   - Navigate to My Course List.
 
 2. **Use the Extension**:
    - Click on the extension icon in the toolbar.
