@@ -45,7 +45,7 @@ h1 {
 
 #fetchBtn {
   padding: 12px 20px;
-  background-color: #007bff;
+  background-color: #02aa61;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -110,7 +110,7 @@ h1 {
 }
 
 #downloadBtn {
-  padding: 10px 15px;
+  padding: 5px 10px;
   margin-top: 15px;
   background-color: #00b3ff;
   color: white;
