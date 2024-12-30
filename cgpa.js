@@ -19,7 +19,6 @@ export function calculateCGPA(levelsData) {
 
             totalDegreeCredits += credit;
 
-            // Exclude courses with weightage of 0
             if (weightage === 0) {
                 return;
             }
