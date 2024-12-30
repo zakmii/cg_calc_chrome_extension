@@ -34,13 +34,22 @@ export function calculateCGPA(levelsData) {
         const sgpa = sgpaCredits > 0 ? sgpaWeightedScore / sgpaCredits : 0;
         logs.push(`SGPA for ${semesterName}: ${sgpa.toFixed(2)}`);
     });
-
+    
     // Calculate CGPA
     const cgpa = totalCredits > 0 ? totalWeightedScore / totalCredits : 0;
+    logs.push('--------------------------------------');
     logs.push(`Total Weighted Score: ${totalWeightedScore}`);
     logs.push(`Total Credits: ${totalCredits}`);
     logs.push(`Total Degree Credits: ${totalDegreeCredits}`);
+    logs.push('--------------------------------------');
     logs.push(`Calculated CGPA: ${cgpa.toFixed(2)}`);
+
+    logs = logs.map(log => {
+        if (log.includes('Total')) {
+            return `<b>${log}</b>`;
+        }
+        return log;
+    });
 
     return { cgpa, logs };
 }
