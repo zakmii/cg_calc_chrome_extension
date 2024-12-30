@@ -80,7 +80,7 @@ export function calculateCGPA(levelsData) {
     logs.push(`Self Growth Credits: ${selfGrowthCredits}`);
     logs.push(`Community Work Credits: ${communityWorkCredits}`);
     logs.push('--------------------------------------');
-    logs.push(`TA Ship Credits: ${taShipCredits}`);
+    logs.push(`TAship Credits: ${taShipCredits}`);
     logs.push(`Online Course Credits: ${onlineCourseCredits}`);
     logs.push('--------------------------------------');
     logs.push(`Total Weighted Score: ${totalWeightedScore}`);
