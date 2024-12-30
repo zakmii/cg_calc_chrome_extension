@@ -10,9 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Display the CGPA and logs in the popup
                 responseDiv.innerHTML = `
-                    <p><strong>Calculated CGPA: ${response.cgpa.toFixed(2)}</strong></p>
-                    <div><strong>Logs:</strong></div>
-                    <div>${logsHtml}</div>
+                    <div class="result-container">
+                        <p class="cgpa"><strong>Calculated CGPA: ${response.cgpa.toFixed(2)}</strong></p>
+                        <div class="logs-container">
+                            <h4>Logs:</h4>
+                            <div class="logs-content">${logsHtml}</div>
+                        </div>
+                    </div>
                 `;
             } else {
                 responseDiv.innerHTML = `<p style="color: red;">Error: ${response.error}</p>`;
