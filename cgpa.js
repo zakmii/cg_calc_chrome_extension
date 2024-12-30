@@ -6,8 +6,8 @@ function checkCommunityWork(courseCode) {
     return courseCode.includes('MSC491');
 }
 
-function getOnlineCourseCredits(classType, credit) {
-    if (classType.includes('Outside Institute')) {
+function getOnlineCourseCredits(courseName, credit) {
+    if (courseName.includes('Distance Course')) {
         return credit;
     }
     return 0;
@@ -44,7 +44,6 @@ export function calculateCGPA(levelsData) {
             const weightage = data.forcedGrade?.weightage || 0.0;
             const courseCode = data.syllabusCourse?.courseClassType?.course?.code || '';
             const courseName = data.syllabusCourse?.courseClassType?.course?.name || '';
-            const classType = data.syllabusCourse?.courseClassType?.classType?.code || '';
 
             totalDegreeCredits += credit;
 
@@ -56,7 +55,7 @@ export function calculateCGPA(levelsData) {
                 communityWorkCredits += credit;
                 return;
             }
-            onlineCourseCredits += getOnlineCourseCredits(classType, credit);
+            onlineCourseCredits += getOnlineCourseCredits(courseName, credit);
             taShipCredits += getTaShipCredits(courseName, credit);
 
             if (weightage === 0) {
