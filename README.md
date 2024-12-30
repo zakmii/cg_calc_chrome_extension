@@ -18,9 +18,6 @@ This Chrome Extension calculates the CGPA of a student by fetching data from the
 ```bash
 # Clone the repository
 $ git clone https://github.com/zakmii/cg_calc_chrome_extension
-
-# Navigate to the cloned directory
-$ cd cg_calc_chrome_extension
 ```
 
 ### 2. Load Extension in Developer Mode
