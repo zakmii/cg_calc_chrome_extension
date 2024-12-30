@@ -1,9 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const fetchButton = document.getElementById('fetchBtn');
+    const loadingDiv = document.getElementById('loading');
+    const responseDiv = document.getElementById('response');
+
     fetchButton.addEventListener('click', function() {
         console.log('Button clicked!');
+        
+        // Show the loading spinner
+        loadingDiv.style.display = 'flex';
+        responseDiv.innerHTML = '';
+
         chrome.runtime.sendMessage({ action: 'fetchData' }, function(response) {
-            const responseDiv = document.getElementById('response');
+            // Hide the loading spinner
+            loadingDiv.style.display = 'none';
+
             if (response.success) {
                 // Create HTML content for logs
                 const logsHtml = response.logs.map(log => `<p>${log}</p>`).join('');
