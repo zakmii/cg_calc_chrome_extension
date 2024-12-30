@@ -64,10 +64,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 const { cgpa, logs } = calculateCGPA(allLevelsData);
 
                 // Send CGPA and logs to the popup
-                sendResponse({ success: true, cgpa, logs });
+                setTimeout(() => sendResponse({ success: true, cgpa, logs }), 0);
             } catch (error) {
                 console.error('Error:', error);
-                sendResponse({ success: false, error: error.message });
+                setTimeout(() => sendResponse({ success: false, error: error.message }), 0);
             }
         })();
 
