@@ -1,15 +1,9 @@
-function getSelfGrowthCredits(courseCode, credit) {
-    if (courseCode.includes('MSC481')) {
-        return credit;
-    }
-    return 0;
+function checkSelfGrowth(courseCode) {
+    return courseCode.includes('MSC481');
 }
 
-function getCommunityWorkCredits(courseCode, credit) {
-    if (courseCode.includes('MSC491')) {
-        return credit;
-    }
-    return 0;
+function checkCommunityWork(courseCode) {
+    return courseCode.includes('MSC491');
 }
 
 function getOnlineCourseCredits(classType, credit) {
@@ -54,8 +48,14 @@ export function calculateCGPA(levelsData) {
 
             totalDegreeCredits += credit;
 
-            selfGrowthCredits += getSelfGrowthCredits(courseCode, credit);
-            communityWorkCredits += getCommunityWorkCredits(courseCode, credit);
+            if(checkSelfGrowth(courseCode)) {
+                selfGrowthCredits += credit;
+                return;
+            }
+            if(checkCommunityWork(courseCode)) {
+                communityWorkCredits += credit;
+                return;
+            }
             onlineCourseCredits += getOnlineCourseCredits(classType, credit);
             taShipCredits += getTaShipCredits(courseName, credit);
 
