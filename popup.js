@@ -35,12 +35,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.success) {
                 const logsHtml = response.logs.map(log => `<p>${log}</p>`).join('');
-                updateResponse(true, { cgpa: response.cgpa, logsHtml });
+                const cgpa = response.cgpa;
+
+                // Save data to Chrome storage
+                chrome.storage.local.set({ cgpa, logs: response.logs }, () => {
+                    console.log('Data saved to storage.');
+                });
+
+                updateResponse(true, { cgpa, logsHtml });
             } else {
                 updateResponse(false, { error: response.error });
             }
         });
     }
+
+    function loadStoredData() {
+        chrome.storage.local.get(['cgpa', 'logs'], (data) => {
+            if (data.cgpa && data.logs) {
+                const logsHtml = data.logs.map(log => `<p>${log}</p>`).join('');
+                updateResponse(true, { cgpa: data.cgpa, logsHtml });
+            }
+        });
+    }
+
+    loadStoredData();
 
     fetchButton.addEventListener('click', handleFetch);
 });
