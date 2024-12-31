@@ -20,6 +20,14 @@ function getTaShipCredits(courseName, credit) {
     return 0;
 }
 
+const GradePoints = {
+    'F': 2,
+    'I': 0,
+    'W': 0,
+    'Withdrawn': 0,
+    'X': 0
+};
+
 export function calculateCGPA(levelsData) {
     let totalCredits = 0;
     let totalDegreeCredits = 0;
@@ -42,8 +50,13 @@ export function calculateCGPA(levelsData) {
             const data = course[0];
             const credit = data.syllabusCourse?.credit || 0.0;
             const weightage = data.forcedGrade?.weightage || 0.0;
+            const grade = data.forcedGrade?.code || '';
             const courseCode = data.syllabusCourse?.courseClassType?.course?.code || '';
             const courseName = data.syllabusCourse?.courseClassType?.course?.name || '';
+
+            if (grade in GradePoints) {
+                return;
+            }
 
             totalDegreeCredits += credit;
 
