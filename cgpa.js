@@ -76,6 +76,9 @@ export function calculateCGPA(levelsData) {
     
     // Calculate CGPA
     totalDegreeCredits = totalDegreeCredits - taShipCredits - onlineCourseCredits + Math.min(8, taShipCredits + onlineCourseCredits);
+    selfGrowthCredits= Math.min(2,selfGrowthCredits);
+    communityWorkCredits= Math.min(2,communityWorkCredits);
+    
     const cgpa = totalCredits > 0 ? totalWeightedScore / totalCredits : 0;
     logs.push('--------------------------------------');
     logs.push(`Self Growth Credits: ${selfGrowthCredits}`);
